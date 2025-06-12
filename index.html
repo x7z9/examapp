@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Exam Application</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.18/mammoth.browser.min.js"></script>
+</head>
+<body>
+    <div id="setup-view">
+        <div id="file-upload-container">
+            <input type="file" id="question-file-input" accept=".pdf,.docx,.txt" style="display: none;">
+            <button id="upload-btn">Upload Question Paper</button>
+            <p id="file-info-display"></p>
+        </div>
+
+        <div id="parsed-content-container">
+            <h3>Parsed Content Preview:</h3>
+            <textarea id="parsed-content-display" rows="10" cols="80" readonly></textarea>
+        </div>
+
+        <div id="extraction-status-container">
+            <p id="extracted-info-display"></p>
+        </div>
+
+        <div id="saved-papers-container">
+            <h3>Saved Question Papers:</h3>
+            <ul id="saved-papers-list"></ul>
+            <button id="clear-all-papers-btn">Clear All Saved Papers</button>
+        </div>
+
+        <div id="theme-toggle-container"> <!-- Moved theme toggle to setup view -->
+            <button id="theme-toggle-btn">Toggle Theme</button>
+        </div>
+
+        <div id="exam-controls"> <!-- Start exam button is part of setup or global controls -->
+             <button id="start-exam-btn">Start Exam with Current Upload</button>
+             <select id="section-selector" style="display:none;"> <!-- Section selector for later -->
+             </select>
+        </div>
+    </div>
+
+    <div id="exam-view" style="display: none;">
+        <div id="timer-container">Timer: <span id="time-left">00:00</span></div>
+
+        <div id="exam-status-bar"> <!-- Re-using status-bar as exam-status-bar -->
+            Question: <span id="current-question-num">0</span>/<span id="total-questions">0</span> |
+            Answered: <span id="answered-count">0</span> |
+            Marked for Review: <span id="marked-review-count">0</span> <!-- was marked-review-count -->
+        </div>
+
+        <div id="question-container">
+            <p id="question-text"></p>
+            <div id="answer-options"></div>
+        </div>
+
+        <div id="navigation-controls">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="mark-review-btn">Mark for Review</button>
+            <button id="clear-response-btn">Clear Response</button>
+            <button id="suggest-answer-btn">Suggest Answer</button>
+            <button id="submit-exam-btn">Submit Exam</button>
+        </div>
+
+        <div id="suggestions-container" style="display: none; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+            <h4>Answer Suggestions:</h4>
+            <ul id="suggestions-list"></ul>
+            <button id="close-suggestions-btn">Close Suggestions</button>
+        </div>
+
+        <div id="score-container" style="display: none;">
+            <!-- Score will be displayed here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
