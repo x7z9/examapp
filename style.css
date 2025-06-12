@@ -1,0 +1,201 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --accent-color: #28a745;
+    --border-color: #dee2e6;
+    --input-bg-color: #f8f9fa;
+    --button-bg-color: #007bff;
+    --button-text-color: #ffffff;
+    --header-bg-color: #f1f1f1; /* A slightly different bg for main containers */
+    --container-bg-color: #ffffff; /* Default background for general containers */
+    --danger-color: #dc3545;
+}
+
+body.dark-mode {
+    --bg-color: #22272e;
+    --text-color: #adbac7;
+    --primary-color: #58a6ff; /* Adjusted for better visibility on dark */
+    --secondary-color: #768390;
+    --accent-color: #56d364;
+    --border-color: #444c56; /* Darker borders */
+    --input-bg-color: #2d333b; /* Dark input fields */
+    --button-bg-color: #58a6ff;
+    --button-text-color: #22272e; /* Dark text on light blue buttons */
+    --header-bg-color: #1c2128; /* Darker headers for containers */
+    --container-bg-color: #22272e; /* Containers match body background */
+    --danger-color: #f85149;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 15px; /* Add some padding to the body */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* General elements */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button, input[type="button"], input[type="submit"] {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    margin: 5px; /* Add some margin around buttons */
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    opacity: 0.9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+button:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Forms: Inputs, Textareas, Selects */
+input[type="text"], input[type="file"], textarea, select {
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: 4px;
+    width: calc(100% - 16px); /* Account for padding */
+    margin-bottom: 10px;
+}
+textarea {
+    min-height: 80px;
+}
+
+/* Containers Styling */
+#setup-view, #exam-view {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    /* background-color: var(--container-bg-color); No distinct background for main views */
+}
+
+#timer-container,
+#exam-status-bar,
+#question-container,
+#navigation-controls,
+#file-upload-container,
+#parsed-content-container,
+#extraction-status-container,
+#saved-papers-container,
+#suggestions-container,
+#exam-results-container, /* Assuming this might be added later */
+#theme-toggle-container, /* Ensure this also gets styled if it's a distinct container */
+#exam-controls /* Container for start button etc. */
+ {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: var(--header-bg-color); /* Use header-bg for these distinct sections */
+}
+
+#question-text {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px dashed var(--border-color); /* Make it dashed to differentiate */
+    background-color: var(--bg-color); /* Inner content area matches body bg */
+    min-height: 50px;
+}
+
+#answer-options div { /* Each option div */
+    padding: 5px 0;
+}
+#answer-options label {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* Lists (Saved Papers, Suggestions) */
+ul#saved-papers-list, ul#suggestions-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+ul#saved-papers-list li, ul#suggestions-list li {
+    background-color: var(--input-bg-color); /* Slightly different from main container bg */
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+ul#saved-papers-list li button {
+    margin-left: 10px;
+    padding: 5px 10px; /* Smaller buttons in list items */
+    font-size: 0.9em;
+}
+
+/* Specific Button Theming if needed */
+#clear-all-papers-btn {
+    background-color: var(--danger-color); /* Example for a destructive action button */
+    color: var(--button-text-color);
+}
+#clear-all-papers-btn:hover {
+    opacity: 0.8;
+}
+
+/* Marked for review button style */
+button.marked {
+    background-color: var(--accent-color);
+    color: var(--button-text-color);
+}
+
+
+/* Initial theme (light) is applied by default through :root */
+/* body {
+    background-color: #ffffff; /* Fallback if CSS vars not supported, though unlikely */
+    /* color: #333333;
+} */
+
+/* Ensure specific IDs or classes are used if styles don't apply as expected */
+#file-info-display, #extracted-info-display {
+    font-size: 0.9em;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: var(--input-bg-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+#timer-container, #exam-status-bar {
+    font-weight: bold;
+    padding: 10px; /* Adjusted padding for these specific bars */
+}
+
+#suggestions-container h4 {
+    margin-top: 0;
+}
